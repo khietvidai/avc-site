@@ -1,0 +1,29 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "avc-site",
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-02-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "avc-site","database_id": "6964d1ab-9c5c-4ea3-a65e-399405e37f42",
+		},
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "avc-media","preview_bucket_name": "avc-media",
+		},
+	],
+	// Worker Loader for plugin sandboxing
+	"worker_loaders": [
+		{
+			"binding": "LOADER",
+		},
+	],
+	// Drives scheduled publishing, plugin cron, and maintenance (see src/worker.ts)
+	"triggers": {
+		"crons": ["* * * * *"],
+	},
+}
